@@ -1,0 +1,4 @@
+services:
+#    trade_tracker_im_people.example:
+#        class: TradeTrackerIM\PeopleBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

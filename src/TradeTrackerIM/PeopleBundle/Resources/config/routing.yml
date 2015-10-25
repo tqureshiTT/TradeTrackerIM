@@ -1,0 +1,3 @@
+trade_tracker_im_people_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TradeTrackerIMPeopleBundle:Default:index }
