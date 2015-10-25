@@ -8,6 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\People;
 use Symfony\Component\HttpFoundation\Response;
 use TradeTrackerIM\PeopleBundle\Document\dPeople;
+use Aws\ElasticLoadBalancing\ElasticLoadBalancingClient;
+//use Aws\Resource\Aws;
+
+
+//require('aws.phar');
 
 class TradeTrackerIMController extends Controller
 {
@@ -16,9 +21,74 @@ class TradeTrackerIMController extends Controller
 	 **/
 	public function TTsetup()
 	{
-	 	$number = rand(0, 100);
+		$resultmessage='';
+		try {
+			$output = shell_exec('echo $HOME');
+			echo "<pre>$output</pre>";
+  			//If the exception is thrown, this text will not be shown
+  			echo 'If you see this, the number is 2 or below';
+
+
+			$client = ElasticLoadBalancingClient::factory(array(
+    				'credentials' => array(
+        				'key'    => 'AKIAI3JAB55JBACNU2YA',
+        				'secret' => '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',
+					),
+    				'profile' => '',
+    				'region'  => 'us-east-1',
+				'version' => '2012-06-01'
+			));
+  			echo 'If you see this, the number is 1 or below';
+
+			$result = $client->describeLoadBalancers(array(
+    			'LoadBalancerNames' => array('publicEndPoint'),
+    			'PageSize' => 400 ,
+			));
+			$resultmessage=$result;
+		}
+		//catch exception
+		catch(Exception $e) {
+  			$resultmessage='Message: ' .$e->getMessage();
+	
+		}
+
+
+
+/*
+		$result = $client->createLoadBalancer(array(
+    				// LoadBalancerName is required
+    				'LoadBalancerName' => 'string',
+    				// Listeners is required
+    				'Listeners' => array(
+        				array(
+            					// Protocol is required
+            					'Protocol' => 'string',
+            					// LoadBalancerPort is required
+            					'LoadBalancerPort' => integer,
+            					'InstanceProtocol' => 'string',
+            					// InstancePort is required
+            					'InstancePort' => integer,
+            					'SSLCertificateId' => 'string',
+        				),
+        				// ... repeated
+    				),
+    				'AvailabilityZones' => array('string', ... ),
+    				'Subnets' => array('string', ... ),
+    				'SecurityGroups' => array('string', ... ),
+    				'Scheme' => 'string',
+    				'Tags' => array(
+        				array(
+            				// Key is required
+            				'Key' => 'string',
+            				'Value' => 'string',
+        				),
+        				// ... repeated
+    				),
+		));
+
+*/
 		return new Response(
-			'<html><body>Lucky number: '.$number.'</body></html>'
+			'<html><body>'.$resultmessage.'</body></html>'
 		);
 	}
 

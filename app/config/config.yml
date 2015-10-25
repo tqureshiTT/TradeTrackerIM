@@ -89,3 +89,8 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+
+#credentials:
+    #region: us-east-1
+    #key: AKIAI3JAB55JBACNU2YA
+    #secret: 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
