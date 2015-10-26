@@ -23,7 +23,7 @@ class TradeTrackerIMController extends Controller
 	{
 		$resultmessage='';
 		try {
-			$output = shell_exec('echo $HOME');
+			$output = shell_exec('echo This is $HOME');
 			echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
   			echo 'If you see this, the number is 2 or below';
@@ -41,10 +41,12 @@ class TradeTrackerIMController extends Controller
   			echo 'If you see this, the number is 1 or below';
 
 			$result = $client->describeLoadBalancers(array(
-    			'LoadBalancerNames' => array('publicEndPoint'),
-    			'PageSize' => 400 ,
+    				'LoadBalancerNames' => array('publicEndPoint'),
+    				'PageSize' => 400 ,
 			));
-			$resultmessage=$result;
+
+			
+			$resultmessage=$result->search('LoadBalancerDescriptions[0].Instances[0].InstanceId');
 		}
 		//catch exception
 		catch(Exception $e) {

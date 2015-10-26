@@ -20,7 +20,8 @@
  	"doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "incenteev/composer-parameter-handler": "~2.0",
-        "aws/aws-sdk-php": "dev-master"
+        "aws/aws-sdk-php": "dev-master",
+	"mtdowling/jmespath.php": "~2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
