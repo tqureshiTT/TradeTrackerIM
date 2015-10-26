@@ -1,0 +1,13 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /home/ec2-user/cd_project
+permissions:
+  - object: /home/ec2-user/cd_project
+    pattern: *
+    owner: ec2-user
+    group: nginx
+    mode: 664
+    type:
+      - file
