@@ -9,6 +9,7 @@ use AppBundle\Entity\People;
 use Symfony\Component\HttpFoundation\Response;
 use TradeTrackerIM\PeopleBundle\Document\dPeople;
 use Aws\ElasticLoadBalancing\ElasticLoadBalancingClient;
+use Aws\CodeDeploy\CodeDeployClient;
 //use Aws\Resource\Aws;
 
 
