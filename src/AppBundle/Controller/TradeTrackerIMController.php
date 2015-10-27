@@ -18,7 +18,8 @@ use Aws\CodeDeploy\CodeDeployClient;
 class TradeTrackerIMController extends Controller
 {
 	/**
-	 *   @Route("/setup")
+	 * @Route("/setup")
+	 * @Method("POST")
 	 **/
 	public function TTsetup()
 	{
@@ -28,7 +29,6 @@ class TradeTrackerIMController extends Controller
 			echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
   			echo 'If you see this, the number is 2 or below';
-
 
 			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
@@ -61,9 +61,6 @@ class TradeTrackerIMController extends Controller
   			$resultmessage='Message: ' .$e->getMessage();
 	
 		}
-
-
-
 /*
 		$result = $client->createLoadBalancer(array(
     				// LoadBalancerName is required
