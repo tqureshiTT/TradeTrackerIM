@@ -17,7 +17,7 @@ class TradeTrackerIMController extends Controller
 {
 	/**
 	 * @Route("/setup")
-	 * @Method("POST")
+	 * @Method("post")
 	 **/
 	public function TTsetup()
 	{
@@ -28,7 +28,9 @@ class TradeTrackerIMController extends Controller
     			$content = $this->get("request")->getContent();
     			if (!empty($content))
     			{
-        			$params = json_decode($content, true); // 2nd param to get as array
+				echo $content->search('head_commit[0].id');
+
+        			//$params = json_decode($content, true); // 2nd param to get as array
     			}
 			//$output = shell_exec('echo This is $HOME');
 			//echo "<pre>$output</pre>";
