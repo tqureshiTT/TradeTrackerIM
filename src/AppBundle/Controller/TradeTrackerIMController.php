@@ -11,10 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use TradeTrackerIM\PeopleBundle\Document\dPeople;
 use Aws\ElasticLoadBalancing\ElasticLoadBalancingClient;
 use Aws\CodeDeploy\CodeDeployClient;
-//use Aws\Resource\Aws;
 
-
-//require('aws.phar');
 
 class TradeTrackerIMController extends Controller
 {
@@ -26,8 +23,15 @@ class TradeTrackerIMController extends Controller
 	{
 		$resultmessage='';
 		try {
-			$output = shell_exec('echo This is $HOME');
-			echo "<pre>$output</pre>";
+
+			$params = array();
+    			$content = $this->get("request")->getContent();
+    			if (!empty($content))
+    			{
+        			$params = json_decode($content, true); // 2nd param to get as array
+    			}
+			//$output = shell_exec('echo This is $HOME');
+			//echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
   			echo 'If you see this, the number is 2 or below';
 
@@ -43,24 +47,23 @@ class TradeTrackerIMController extends Controller
   			echo 'If you see this, the number is 1 or below';
 
 			$result = $client->createDeploymentAsync([
-    			'applicationName' => 'TradeTracker', // REQUIRED
-    			'deploymentConfigName' => 'CodeDeployDefault.AllAtOnce',
-    			'deploymentGroupName' => 'TradeTrackerSymfony',
-    			'description' => 'Trade Tracker Release',
-    			'ignoreApplicationStopFailures' => true,
-    			'revision' => [
-        			'gitHubLocation' => [
-            			'commitId' => 'f8147eb85ab18ab0c1b605135bb65a89f0204f41',
-            			'repository' => 'tqureshiTT/TradeTrackerIM',
-        			],
-        			'revisionType' => 'GitHub',
-    			],
+    				'applicationName' => 'TradeTracker', // REQUIRED
+    				'deploymentConfigName' => 'CodeDeployDefault.AllAtOnce',
+    				'deploymentGroupName' => 'TradeTrackerSymfony',
+    				'description' => 'Trade Tracker Release',
+    				'ignoreApplicationStopFailures' => true,
+    				'revision' => [
+        				'gitHubLocation' => [
+            					'commitId' => 'f8147eb85ab18ab0c1b605135bb65a89f0204f41',
+            					'repository' => 'tqureshiTT/TradeTrackerIM',
+        				],
+        				'revisionType' => 'GitHub',
+    				],
 			]);
 		}
 		//catch exception
 		catch(Exception $e) {
   			$resultmessage='Message: ' .$e->getMessage();
-	
 		}
 /*
 		$result = $client->createLoadBalancer(array(
