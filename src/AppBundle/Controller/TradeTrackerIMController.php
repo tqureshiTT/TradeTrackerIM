@@ -28,10 +28,11 @@ class TradeTrackerIMController extends Controller
     			$content = $this->get("request")->getContent();
     			if (!empty($content))
     			{
-				echo $content->search('head_commit[0].id');
-
-        			//$params = json_decode($content, true); // 2nd param to get as array
+        			$params = json_decode($content, true); 
+				echo $params->head_commit->id;
+			//	echo $content->search('head_commit[0].id');
     			}
+			
 			//$output = shell_exec('echo This is $HOME');
 			//echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
