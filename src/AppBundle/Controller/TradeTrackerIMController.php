@@ -31,14 +31,14 @@ class TradeTrackerIMController extends Controller
     			if (!empty($content))
     			{
 				$params = json_decode($content, false);
-                                $commitId = "'".$params->head_commit->id."'";
+                                $commitId = $params->head_commit->id;
 				echo $commitId;
     			}
 			
 			//$output = shell_exec('echo This is $HOME');
 			//echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
-  			echo 'If you see this, the number is 2 or below';
+  			//echo 'If you see this, the number is 2 or below';
 
 			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
@@ -49,7 +49,7 @@ class TradeTrackerIMController extends Controller
     				'region'  => 'us-east-1',
 				'version' => '2014-10-06'
 			));
-  			echo 'If you see this, the number is 1 or below';
+  			//echo 'If you see this, the number is 1 or below';
 
 			$result = $client->createDeploymentAsync([
     				'applicationName' => 'TradeTracker', // REQUIRED
