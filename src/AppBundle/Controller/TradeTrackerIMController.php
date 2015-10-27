@@ -23,7 +23,7 @@ class TradeTrackerIMController extends Controller
 	{
 		$resultmessage='';
 		try {
-			// testing push event - 1
+			// testing push event - 2
 
 			$params = array();
 			$commitId = '';
