@@ -29,7 +29,7 @@ class TradeTrackerIMController extends Controller
   			echo 'If you see this, the number is 2 or below';
 
 
-			$client = ElasticLoadBalancingClient::factory(array(
+			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
         				'key'    => 'AKIAI3JAB55JBACNU2YA',
         				'secret' => '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',
@@ -40,13 +40,20 @@ class TradeTrackerIMController extends Controller
 			));
   			echo 'If you see this, the number is 1 or below';
 
-			$result = $client->describeLoadBalancers(array(
-    				'LoadBalancerNames' => array('publicEndPoint'),
-    				'PageSize' => 400 ,
-			));
-
-			
-			$resultmessage=$result->search('LoadBalancerDescriptions[0].Instances[0].InstanceId');
+			$result = $client->createDeployment([
+    			'applicationName' => 'TradeTracker', // REQUIRED
+    			'deploymentConfigName' => '',
+    			'deploymentGroupName' => ' TradeTrackerSymfony',
+    			'description' => 'Trade Tracker Release',
+    			'ignoreApplicationStopFailures' => true,
+    			'revision' => [
+        			'gitHubLocation' => [
+            			'commitId' => 'f8147eb85ab18ab0c1b605135bb65a89f0204f41',
+            			'repository' => 'tqureshiTT/TradeTrackerIM',
+        			],
+        			'revisionType' => 'GitHub',
+    			],
+			]);
 		}
 		//catch exception
 		catch(Exception $e) {
