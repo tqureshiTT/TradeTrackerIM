@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-sudo /etc/init.d/nginx stop
+/etc/init.d/nginx stop
