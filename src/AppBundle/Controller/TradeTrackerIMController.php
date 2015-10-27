@@ -25,12 +25,13 @@ class TradeTrackerIMController extends Controller
 		try {
 
 			$params = array();
+			$commitId = '';
     			$content = $this->get("request")->getContent();
     			if (!empty($content))
     			{
-        			$params = json_decode($content, true); 
-				echo $params->head_commit->id;
-			//	echo $content->search('head_commit[0].id');
+				$params = json_decode($content, false);
+                                $commitId = "'".$params->head_commit->id."'";
+				echo $commitId;
     			}
 			
 			//$output = shell_exec('echo This is $HOME');
@@ -57,7 +58,7 @@ class TradeTrackerIMController extends Controller
     				'ignoreApplicationStopFailures' => true,
     				'revision' => [
         				'gitHubLocation' => [
-            					'commitId' => 'f8147eb85ab18ab0c1b605135bb65a89f0204f41',
+            					'commitId' => $commitId,
             					'repository' => 'tqureshiTT/TradeTrackerIM',
         				],
         				'revisionType' => 'GitHub',
