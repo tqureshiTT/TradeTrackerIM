@@ -2,11 +2,55 @@ version: 0.0
 os: linux 
 files:
   - source: /
-    destination: /home/ec2-user/cd_project
+    destination: /home/ec2-user/TradeTrackerIM
 permissions:
-  - object: /home/ec2-user/cd_project
+  - object: /home/ec2-user/TradeTrackerIM
     owner: ec2-user
     group: nginx
     mode: 664
     type:
       - file
+hooks:
+  ApplicationStop:
+    - location: 
+      timeout:
+      runas:
+    - location: 
+      timeout:
+      runas: 
+# During the BeforeInstall deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  BeforeInstall:
+    - location: 
+      timeout:
+      runas: 
+    - location: 
+      timeout:
+      runas:
+# During the AfterInstall deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  AfterInstall:
+    - location:     
+      timeout: 
+      runas:
+    - location: 
+      timeout:
+      runas:
+# During the ApplicationInstall deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  ApplicationStart:
+    - location:     
+      timeout: 
+      runas:
+    - location: 
+      timeout:
+      runas:
+# During the ValidateService deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  ValidateService:
+    - location:     
+      timeout: 
+      runas:
+    - location: 
+      timeout:
+      runas:
