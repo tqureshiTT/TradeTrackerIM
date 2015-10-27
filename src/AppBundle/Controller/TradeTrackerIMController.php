@@ -23,7 +23,7 @@ class TradeTrackerIMController extends Controller
 	{
 		$resultmessage='';
 		try {
-			// testing push event - 5
+			// testing push event - 6
 
 			$params = array();
 			$commitId = '';
@@ -71,39 +71,6 @@ class TradeTrackerIMController extends Controller
 		catch(Exception $e) {
   			$resultmessage='Message: ' .$e->getMessage();
 		}
-/*
-		$result = $client->createLoadBalancer(array(
-    				// LoadBalancerName is required
-    				'LoadBalancerName' => 'string',
-    				// Listeners is required
-    				'Listeners' => array(
-        				array(
-            					// Protocol is required
-            					'Protocol' => 'string',
-            					// LoadBalancerPort is required
-            					'LoadBalancerPort' => integer,
-            					'InstanceProtocol' => 'string',
-            					// InstancePort is required
-            					'InstancePort' => integer,
-            					'SSLCertificateId' => 'string',
-        				),
-        				// ... repeated
-    				),
-    				'AvailabilityZones' => array('string', ... ),
-    				'Subnets' => array('string', ... ),
-    				'SecurityGroups' => array('string', ... ),
-    				'Scheme' => 'string',
-    				'Tags' => array(
-        				array(
-            				// Key is required
-            				'Key' => 'string',
-            				'Value' => 'string',
-        				),
-        				// ... repeated
-    				),
-		));
-
-*/
 		return new Response(
 			'<html><body>'.$resultmessage.'</body></html>'
 		);
