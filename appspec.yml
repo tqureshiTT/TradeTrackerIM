@@ -11,16 +11,16 @@ permissions:
     type:
       - file
 hooks:
-  ApplicationStop: 
-    - location: scripts/ApplicationStop.sh
-      timeout: 180
-      runas: root
+  #ApplicationStop: 
+    #- location: scripts/ApplicationStop.sh
+      #timeout: 180
+      #runas: root
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-  BeforeInstall:
-    - location: scripts/BeforeInstall.sh
-      timeout: 180
-      runas: root
+  #BeforeInstall:
+    #- location: scripts/BeforeInstall.sh
+      #timeout: 180
+      #runas: root
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
