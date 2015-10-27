@@ -37,14 +37,14 @@ class TradeTrackerIMController extends Controller
 					),
     				'profile' => '',
     				'region'  => 'us-east-1',
-				'version' => '2012-06-01'
+				'version' => '2014-10-06'
 			));
   			echo 'If you see this, the number is 1 or below';
 
 			$result = $client->createDeploymentAsync([
     			'applicationName' => 'TradeTracker', // REQUIRED
-    			'deploymentConfigName' => '',
-    			'deploymentGroupName' => ' TradeTrackerSymfony',
+    			'deploymentConfigName' => 'CodeDeployDefault.AllAtOnce',
+    			'deploymentGroupName' => 'TradeTrackerSymfony',
     			'description' => 'Trade Tracker Release',
     			'ignoreApplicationStopFailures' => true,
     			'revision' => [
