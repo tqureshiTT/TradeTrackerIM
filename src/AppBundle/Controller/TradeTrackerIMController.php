@@ -51,7 +51,7 @@ class TradeTrackerIMController extends Controller
 			));
   			//echo 'If you see this, the number is 1 or below';
 
-			$result = $client->createDeploymentAsync([
+			$result = $client->createDeployment([
     				'applicationName' => 'TradeTracker', // REQUIRED
     				'deploymentConfigName' => 'CodeDeployDefault.AllAtOnce',
     				'deploymentGroupName' => 'TradeTrackerSymfony',
