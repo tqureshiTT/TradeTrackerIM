@@ -65,6 +65,7 @@ class TradeTrackerIMController extends Controller
         				'revisionType' => 'GitHub',
     				],
 			]);
+  			$resultmessage='Message: '.$result;
 		}
 		//catch exception
 		catch(Exception $e) {
