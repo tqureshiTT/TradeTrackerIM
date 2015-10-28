@@ -224,7 +224,7 @@ class TradeTrackerIMController extends Controller
     				//],
 			//]
 			//);
-		$resultMessage=$result->search('Reservations.Instances[1].InstanceId');
+		$resultMessage=$result->search('Reservations.Instances[1]');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
 		return new Response('<html><body>'.$resultMessage.'</body></html>');
 	}
