@@ -212,7 +212,8 @@ class TradeTrackerIMController extends Controller
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
                         //echo 'If you see this, the number is 1 or below';
 
-                        //$result = $client->describeInstances();
+                        $result = $client->describeInstances();
+			echo "Number of running instances: " . countInstances($result);
                         
 			$result = $client->describeInstances([
 				'DryRun' => false
