@@ -225,6 +225,7 @@ class TradeTrackerIMController extends Controller
         				foreach ($instance['Tags'] as $tag) {
             					if ($tag['Key'] == 'Name') {
                 					$instanceName = $tag['Value'];
+							echo $instanceName;
             					}
         				}
 					$instance['InstanceId'];
