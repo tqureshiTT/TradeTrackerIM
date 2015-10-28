@@ -230,7 +230,7 @@ class TradeTrackerIMController extends Controller
     				}
 
 			}
-			$results = $ec2->stopInstances($shutdownInstances);
+			$results = $client->stopInstances($shutdownInstances);
                         
 		$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
