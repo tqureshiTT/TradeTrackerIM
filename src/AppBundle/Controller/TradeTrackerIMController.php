@@ -213,10 +213,10 @@ class TradeTrackerIMController extends Controller
                         //echo 'If you see this, the number is 1 or below';
 
                         $result = $client->describeInstances();
-			echo "Number of running instances: " . array_count_values($result);
+			echo "Number of running instances: " . array_count_values($result->Instances[0]);
                         
-			$result = $client->describeInstances([
-				'DryRun' => false
+			//$result = $client->describeInstances([
+			//	'DryRun' => false
 				//,
     				//'Filters' => [
         				//[
@@ -224,8 +224,8 @@ class TradeTrackerIMController extends Controller
             					//'Values' => ['SYMFONY2'],
         				//],
     				//],
-			]
-			);
+			//]
+			//);
 		$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
 		return new Response('<html><body>here it is'.$resultMessage.'</body></html>');
