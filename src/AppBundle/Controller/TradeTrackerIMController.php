@@ -212,18 +212,18 @@ class TradeTrackerIMController extends Controller
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
                         //echo 'If you see this, the number is 1 or below';
 
-                        $result = $client->describeInstances();
+                        //$result = $client->describeInstances();
                         
-			//$result = $client->describeInstances([
-				//'DryRun' => false,
-    				//'Filters' => [
-        				//[
-            					//'Name' => 'tag:Name',
-            					//'Values' => ['SYMFONY2'],
-        				//],
-    				//],
-			//]
-			//);
+			$result = $client->describeInstances([
+				'DryRun' => false,
+    				'Filters' => [
+        				[
+            					'Name' => 'tag:Name',
+            					'Values' => ['SYMFONY2'],
+        				],
+    				],
+			]
+			);
 		$resultMessage=$result->search('Reservations.Instances[1]');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
 		return new Response('<html><body>'.$resultMessage.'</body></html>');
