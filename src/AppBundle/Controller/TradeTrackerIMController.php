@@ -217,9 +217,10 @@ class TradeTrackerIMController extends Controller
 			$results = $client->describeInstances($args);
 			$reservations = $results['Reservations'];
 			foreach ($reservations as $reservation) {
-				echo "1";
+				echo "1->";
     				$instances = $reservation['Instances'];
     				foreach ($instances as $instance) {
+					echo "2->";
         				$instanceName = '';
         				foreach ($instance['Tags'] as $tag) {
             					if ($tag['Key'] == 'Name') {
