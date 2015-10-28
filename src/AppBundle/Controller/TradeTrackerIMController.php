@@ -227,10 +227,9 @@ class TradeTrackerIMController extends Controller
             					'Values' => ['SYMFONY2'],
         				],
     				],
-				'MaxResults' => 100,
 			]
 			);
-		$resultMessage=$result->search('Reservations.Instances[1].InstanceId');	
+		$resultMessage=$result->search('Reservations.Instances[1]');	
 		return new Response('<html><body>'.$resultMessage.'</body></html>');
 	}
 }
