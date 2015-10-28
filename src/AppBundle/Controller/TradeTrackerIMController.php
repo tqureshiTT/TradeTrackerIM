@@ -215,7 +215,7 @@ class TradeTrackerIMController extends Controller
                         //$result = $client->describeInstances();
                         
 			$result = $client->describeInstances([
-				'DryRun' => false
+				'DryRun' => true
 				//,
     				//'Filters' => [
         				//[
