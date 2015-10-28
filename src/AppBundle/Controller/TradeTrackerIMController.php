@@ -225,7 +225,7 @@ class TradeTrackerIMController extends Controller
                 					$instanceName = $tag['Value'];
             					}
         				}
-					echo $instance['InstanceId'];
+					$instance['InstanceId'];
         				//if ($instance['State']['Name'] == \Aws\Ec2\Enum\InstanceStateName::RUNNING){ $shutdownInstances['InstanceIds'][] = $instance['InstanceId']; }
     				}
 
@@ -234,6 +234,6 @@ class TradeTrackerIMController extends Controller
                         
 		//$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
-		return new Response('<html><body>here it is'.$resultMessage.'</body></html>');
+		return new Response('<html><body>here it is </body></html>');
 	}
 }
