@@ -136,9 +136,31 @@ class TradeTrackerIMController extends Controller
 	 **/
 	public function TTtakedown()
 	{
-	 	$number = rand(0, 100);
-		return new Response(
-			'<html><body>Lucky number: '.$number.'</body></html>'
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => 'AKIAI3JAB55JBACNU2YA', 'secret' => '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',),
+                                'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
+
+			$args = array( 'Filters' => array( array('Name' => 'tag:Name', 'Values' => array('POSTGRESQL') )));
+			$results = $client->describeInstances($args);
+			$reservations = $results['Reservations'];
+			foreach ($reservations as $reservation) {
+				echo "1->";
+    				$instances = $reservation['Instances'];
+    				foreach ($instances as $instance) {
+					echo "2->";
+        				$instanceName = '';
+        				foreach ($instance['Tags'] as $tag) {
+            					if ($tag['Key'] == 'Name') {
+                					$instanceName = $tag['Value'];
+							echo $instanceName;
+            					}
+        				}
+					$instance['InstanceId'];
+        				$shutdownInstances['InstanceIds'][] = $instance['InstanceId'];
+    				}
+
+			}
+			$results = $client->stopInstances($shutdownInstances);
+			'<html><body></body></html>'
 		);
 	}
 
