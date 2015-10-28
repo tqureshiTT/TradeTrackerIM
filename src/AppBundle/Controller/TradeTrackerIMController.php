@@ -218,7 +218,7 @@ class TradeTrackerIMController extends Controller
                         ));
                         //echo 'If you see this, the number is 1 or below';
 
-                        $result = $client->describeInstances{[
+                        $result = $client->describeInstances([
 				'DryRun' => false,
 				'Filters' => [
 					[
@@ -226,7 +226,7 @@ class TradeTrackerIMController extends Controller
 						'Value'=>'SYMFONY2',
 					],
 				],
-			]}
+			]);
 
 		$resultmessage=$result->search('Reservations.Instances[0].InstanceId');	
 
