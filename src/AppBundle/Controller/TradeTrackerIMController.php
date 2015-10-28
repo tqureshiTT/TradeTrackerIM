@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use TradeTrackerIM\PeopleBundle\Document\dPeople;
 use Aws\ElasticLoadBalancing\ElasticLoadBalancingClient;
 use Aws\CodeDeploy\CodeDeployClient;
+use Aws\CodeDeploy\Ec2Client;
 
 
 class TradeTrackerIMController extends Controller
