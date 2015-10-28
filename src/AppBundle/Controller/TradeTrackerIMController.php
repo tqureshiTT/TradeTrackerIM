@@ -226,7 +226,7 @@ class TradeTrackerIMController extends Controller
 						'Value'=>'SYMFONY2',
 					],
 				],
-			}
+			]}
 
 		$resultmessage=$result->search('Reservations.Instances[0].InstanceId');	
 
