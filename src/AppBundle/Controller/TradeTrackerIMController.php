@@ -221,14 +221,14 @@ class TradeTrackerIMController extends Controller
 
                         $result = $client->describeInstances([
 				'DryRun' => false,
-				'Filters' => [
-					[
-						'Name'=>'Name',
-						'Value'=>'SYMFONY2',
-					],
-				],
-			]);
-
+				'Tags' => [
+            				[
+                				'Key' => 'Name',
+                				'Value' => 'SYMFONY2',
+            				],
+				]
+			]
+			);
 		$resultmessage=$result->search('Reservations.Instances[0].InstanceId');	
 
 
