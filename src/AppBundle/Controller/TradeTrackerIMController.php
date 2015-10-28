@@ -115,7 +115,7 @@ class TradeTrackerIMController extends Controller
 		//Combine them together and print out the result.
 		//echo $random_name . ' ' . $random_surname;
 
-	 	$age= rand(0, 65);
+	 	$age= rand(1, 85);
 
 		$people = new People();
     		$people->setLastName($random_surname);
@@ -127,9 +127,7 @@ class TradeTrackerIMController extends Controller
     		$em->persist($people);
     		$em->flush();
 
-		return new Response(
-			'<html><body>First Name:'.$random_name.' Last Name:'.$random_surname.' Age:'.$age.'</body></html>'
-		);
+		return new Response('<html><body>First Name:'.$random_name.' Last Name:'.$random_surname.' Age:'.$age.'</body></html>');
 	}
 
 	/**
@@ -152,8 +150,7 @@ class TradeTrackerIMController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$dm = $this->get('doctrine_mongodb')->getManager();
 
-		$repository = $this->getDoctrine()
-			->getRepository('AppBundle:People');
+		$repository = $this->getDoctrine()->getRepository('AppBundle:People');
 		$allpeople = $repository->findAll();
 		
 		$return_table='<table>';
@@ -162,7 +159,6 @@ class TradeTrackerIMController extends Controller
 
 		foreach ($allpeople as &$t_people)
 		{
-
 			try
 			{
 				$return_table=$return_table.'<tr>';
@@ -192,9 +188,7 @@ class TradeTrackerIMController extends Controller
 
 		$return_table=$return_table.'</table>';
 
-		return new Response(
-			'<html><body>'.$return_table.'</body></html>'
-		);
+		return new Response('<html><body>'.$return_table.'</body></html>');
 	}
 
 	/**
@@ -204,10 +198,7 @@ class TradeTrackerIMController extends Controller
 	{
 		$message = "";
 		$collection = $this->get('doctrine_mongodb')->getManager()->getDocumentCollection('TradeTrackerIM\PeopleBundle\Document\dPeople')->find()->count();
-		
-		return new Response(
-			'<html><body>'.$collection.'</body></html>'
-		);
+		return new Response('<html><body>'.$collection.'</body></html>');
 	}
 
 	/**
@@ -215,9 +206,31 @@ class TradeTrackerIMController extends Controller
 	 **/
 	public function TTteardown()
 	{
-	 	$number = rand(0, 100);
-		return new Response(
-			'<html><body>Lucky number: '.$number.'</body></html>'
-		);
+	
+			$client = Ec2Client::factory(array(
+                                'credentials' => array(
+                                        'key'    => 'AKIAI3JAB55JBACNU2YA',
+                                        'secret' => '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',
+                                        ),
+                                'profile' => '',
+                                'region'  => 'us-east-1',
+                                'version' => '2015-10-01'
+                        ));
+                        //echo 'If you see this, the number is 1 or below';
+
+                        $result = $client->describeInstances{[
+				'DryRun' => false,
+				'Filters' => [
+					[
+						'Name'=>'Name',
+						'Value'=>'SYMFONY2',
+					],
+				],
+			}
+
+		$resultmessage=$result->search('Reservations.Instances[0].InstanceId');	
+
+
+		return new Response('<html><body>'.$resultMessage.'</body></html>');
 	}
 }
