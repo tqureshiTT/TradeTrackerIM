@@ -213,7 +213,7 @@ class TradeTrackerIMController extends Controller
                         //echo 'If you see this, the number is 1 or below';
 
                         $result = $client->describeInstances();
-			echo "Number of running instances: " . countInstances($result);
+			echo "Number of running instances: " . array_count_values($result);
                         
 			$result = $client->describeInstances([
 				'DryRun' => false
