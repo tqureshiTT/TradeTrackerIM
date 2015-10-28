@@ -213,7 +213,7 @@ class TradeTrackerIMController extends Controller
 
                         //echo 'If you see this, the number is 1 or below';
 
-			$args = array( 'Filters' => array( array('Name' => 'tag:Shut', 'Values' => array('Yes') )));
+			$args = array( 'Filters' => array( array('Name' => 'tag:Master', 'Values' => array('No') )));
 			$results = $client->describeInstances($args);
 			$reservations = $results['Reservations'];
 			foreach ($reservations as $reservation) {
@@ -235,8 +235,6 @@ class TradeTrackerIMController extends Controller
 			}
 			$results = $client->stopInstances($shutdownInstances);
                         
-		//$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
-		//$resultMessage=$result->search('Reservations')->valueOf();	
 		return new Response('<html><body>here it is </body></html>');
 	}
 }
