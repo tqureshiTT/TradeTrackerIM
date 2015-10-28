@@ -229,11 +229,11 @@ class TradeTrackerIMController extends Controller
             					}
         				}
 					$instance['InstanceId'];
-        				//if ($instance['State']['Name'] == \Aws\Ec2\Enum\InstanceStateName::RUNNING){ $shutdownInstances['InstanceIds'][] = $instance['InstanceId']; }
+        				$shutdownInstances['InstanceIds'][] = $instance['InstanceId'];
     				}
 
 			}
-			//$results = $client->stopInstances($shutdownInstances);
+			$results = $client->stopInstances($shutdownInstances);
                         
 		//$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
