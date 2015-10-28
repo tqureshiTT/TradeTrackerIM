@@ -208,27 +208,22 @@ class TradeTrackerIMController extends Controller
 	public function TTteardown()
 	{
 	
-			$client = Ec2Client::factory(array(
-                                'credentials' => array(
-                                        'key'    => 'AKIAI3JAB55JBACNU2YA',
-                                        'secret' => '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',
-                                        ),
-                                'profile' => '',
-                                'region'  => 'us-east-1',
-                                'version' => '2015-10-01'
-                        ));
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => 'AKIAI3JAB55JBACNU2YA', 'secret' => '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',),
+                                'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
                         //echo 'If you see this, the number is 1 or below';
 
-                        $result = $client->describeInstances([
-				'DryRun' => false,
-    				'Filters' => [
-        				[
-            					'Name' => 'tag:Name',
-            					'Values' => ['SYMFONY2'],
-        				],
-    				],
-			]
-			);
+                        $result = $client->describeInstances();
+                        
+			//$result = $client->describeInstances([
+				//'DryRun' => false,
+    				//'Filters' => [
+        				//[
+            					//'Name' => 'tag:Name',
+            					//'Values' => ['SYMFONY2'],
+        				//],
+    				//],
+			//]
+			//);
 		$resultMessage=$result->search('Reservations.Instances[1]');	
 		return new Response('<html><body>'.$resultMessage.'</body></html>');
 	}
