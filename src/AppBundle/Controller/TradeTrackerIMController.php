@@ -210,22 +210,28 @@ class TradeTrackerIMController extends Controller
 	
 		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => 'AKIAI3JAB55JBACNU2YA', 'secret' => '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',),
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
+
                         //echo 'If you see this, the number is 1 or below';
 
                         $result = $client->describeInstances();
-			echo "Number of running instances: " . array_count_values($result->Instances);
+			$args = array( 'Filters' => array( array('Name' => 'tag:Shut', 'Values' => array('Yes') )));
+			$results = $ec2->describeInstances($args);
+			$reservations = $results['Reservations'];
+			foreach ($reservations as $reservation) {
+    				$instances = $reservation['Instances'];
+    				foreach ($instances as $instance) {
+        				$instanceName = '';
+        				foreach ($instance['Tags'] as $tag) {
+            					if ($tag['Key'] == 'Name') {
+                					$instanceName = $tag['Value'];
+            					}
+        				}
+        				if ($instance['State']['Name'] == \Aws\Ec2\Enum\InstanceStateName::RUNNING){ $shutdownInstances['InstanceIds'][] = $instance['InstanceId']; }
+    				}
+
+			}
+			$results = $ec2->stopInstances($shutdownInstances);
                         
-			//$result = $client->describeInstances([
-			//	'DryRun' => false
-				//,
-    				//'Filters' => [
-        				//[
-            					//'Name' => 'tag:Name',
-            					//'Values' => ['SYMFONY2'],
-        				//],
-    				//],
-			//]
-			//);
 		$resultMessage=$result->search('Reservations.Instances[0].InstanceId');
 		//$resultMessage=$result->search('Reservations')->valueOf();	
 		return new Response('<html><body>here it is'.$resultMessage.'</body></html>');
