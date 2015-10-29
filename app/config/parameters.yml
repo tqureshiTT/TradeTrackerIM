@@ -1,6 +1,6 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: 172.31.51.87
+    database_host: internal-internal-postgresql-928695668.us-east-1.elb.amazonaws.com
     database_port: 5432
     database_name: portaldb
     database_user: portaluser
