@@ -159,7 +159,7 @@ class TradeTrackerIMController extends Controller
     				}
 
 			}
-			$results = $client->stopInstances($shutdownInstances);
+			$results = $client->TerminateInstances($shutdownInstances);
 			return new Response('<html><body></body></html>');
 	}
 
@@ -254,7 +254,7 @@ class TradeTrackerIMController extends Controller
     				}
 
 			}
-			$results = $client->stopInstances($shutdownInstances);
+			$results = $client->TerminateInstances($shutdownInstances);
                         
 		return new Response('<html><body>here it is </body></html>');
 	}
