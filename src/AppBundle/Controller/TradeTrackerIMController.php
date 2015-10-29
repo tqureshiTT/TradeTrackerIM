@@ -160,7 +160,7 @@ class TradeTrackerIMController extends Controller
 
 			}
 			$results = $client->stopInstances($shutdownInstances);
-			'<html><body></body></html>'
+			return new Response('<html><body></body></html>');
 	}
 
 	/**
