@@ -46,10 +46,10 @@ class TradeTrackerIMController extends Controller
         				'key'    => $_SERVER['AK'],
         				'secret' => $_SERVER['SC'],
 					),
-    				'profile' => '',
     				'region'  => 'us-east-1',
 				'version' => '2014-10-06'
 			));
+  			//echo 'If you see this, the number is 1 or below';
   			//echo 'If you see this, the number is 1 or below';
 
 			$result = $client->createDeployment([
@@ -137,7 +137,7 @@ class TradeTrackerIMController extends Controller
 	public function TTtakedown()
 	{
 		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => $_SERVER['AK'] , 'secret' => $_SERVER['SC'] ,),
-                                'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
+                                'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
 			$args = array( 'Filters' => array( array('Name' => 'tag:Name', 'Values' => array('POSTGRESQL') )));
 			$results = $client->describeInstances($args);
@@ -230,7 +230,7 @@ class TradeTrackerIMController extends Controller
 	{
 	
 		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => $_SERVER['AK'] , 'secret' => $_SERVER['SC'] ,),
-                                'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
+                                'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
                         //echo 'If you see this, the number is 1 or below';
 
