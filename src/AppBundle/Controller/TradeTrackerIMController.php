@@ -40,12 +40,11 @@ class TradeTrackerIMController extends Controller
 			//echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
   			//echo 'If you see this, the number is 2 or below';
-			echo getenv('AK');
 
 			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
-        				'key'    => getenv('AK'),
-        				'secret' => getenv('SC'),
+        				'key'    => $_SERVER['AK'],
+        				'secret' => $_SERVER['SC'],
 					),
     				'profile' => '',
     				'region'  => 'us-east-1',
@@ -137,7 +136,7 @@ class TradeTrackerIMController extends Controller
 	 **/
 	public function TTtakedown()
 	{
-		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => getenv('AK') , 'secret' => getenv('SC') ,),
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => $_SERVER['AK'] , 'secret' => $_SERVER['SC'] ,),
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
 			$args = array( 'Filters' => array( array('Name' => 'tag:Name', 'Values' => array('POSTGRESQL') )));
@@ -230,7 +229,7 @@ class TradeTrackerIMController extends Controller
 	public function TTteardown()
 	{
 	
-		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => getenv('AK') , 'secret' => getenv('SC') ,),
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => $_SERVER['AK'] , 'secret' => $_SERVER['SC'] ,),
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
                         //echo 'If you see this, the number is 1 or below';
