@@ -43,8 +43,8 @@ class TradeTrackerIMController extends Controller
 
 			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
-        				'key'    => 'AKIAI3JAB55JBACNU2YA',
-        				'secret' => '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',
+        				'key'    => getenv('AK'),
+        				'secret' => getenv('SC'),
 					),
     				'profile' => '',
     				'region'  => 'us-east-1',
@@ -136,7 +136,7 @@ class TradeTrackerIMController extends Controller
 	 **/
 	public function TTtakedown()
 	{
-		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => 'AKIAI3JAB55JBACNU2YA', 'secret' => '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',),
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => getenv('AK') , 'secret' => getenv('SC') ,),
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
 			$args = array( 'Filters' => array( array('Name' => 'tag:Name', 'Values' => array('POSTGRESQL') )));
@@ -229,7 +229,7 @@ class TradeTrackerIMController extends Controller
 	public function TTteardown()
 	{
 	
-		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => 'AKIAI3JAB55JBACNU2YA', 'secret' => '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',),
+		$client = Ec2Client::factory(array( 'credentials' => array( 'key'    => getenv('AK') , 'secret' => getenv('SC') ,),
                                 'profile' => '', 'region'  => 'us-east-1', 'version' => '2015-10-01'));
 
                         //echo 'If you see this, the number is 1 or below';
