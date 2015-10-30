@@ -40,6 +40,7 @@ class TradeTrackerIMController extends Controller
 			//echo "<pre>$output</pre>";
   			//If the exception is thrown, this text will not be shown
   			//echo 'If you see this, the number is 2 or below';
+			echo getenv('AK');
 
 			$client = CodeDeployClient::factory(array(
     				'credentials' => array(
